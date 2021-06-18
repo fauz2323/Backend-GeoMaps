@@ -1,18 +1,17 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Photo;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Wisata extends Model
 {
-    use HasFactory;
-    protected $table = "wisatas";
     protected $guarded = [];
 
     /**
-     * Get all of the comments for the Wisata
+     * Get all of the photos for the Wisata
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -20,7 +19,6 @@ class Wisata extends Model
     {
         return $this->hasMany(Photos::class,'wisata_id','id');
     }
-
     /**
      * Get the user that owns the Wisata
      *

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wisata;
+use App\Models\Photos;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WisataController extends Controller
 {
@@ -32,8 +34,8 @@ class WisataController extends Controller
     public function create()
     {
         $category = Category::all();
-        $coord = Wisata::all();
-        return view('wisata.info.create', compact('category', 'coord'));
+
+        return view('wisata.info.create', compact('category'));
     }
 
     /**
@@ -44,7 +46,7 @@ class WisataController extends Controller
      */
     public function store(Request $request)
     {
-        $wisata = Wisata::create([
+         $wisata = Wisata::create([
             'category_id' => $request->category_id,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
@@ -53,7 +55,17 @@ class WisataController extends Controller
             'longitude' => $request->longitude,
         ]);
 
-        return redirect('/wisata');
+            foreach ($request->file('pp') as $file) {
+                $path = Storage::disk('public')->putFile('pp', $file);
+                $photos = [
+                    'wisata_id' => $wisata->id,
+                    'path' => $path,
+                ];
+                Photos::create($photos);
+            }
+      // Photo::create($photos);
+
+      return redirect()->route('wisata.index')->with('status', 'Space created!');
     }
 
     /**
@@ -90,9 +102,33 @@ class WisataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = \App\Models\Wisata::find($id);
+        $data = Wisata::findOrFail($id);
 
-        $data->update($request->all());
+        if ($request->hasFile('pp')) {
+            foreach ($data->photos as $key) {
+                Storage::delete('public/'.$key->path);
+            }
+            $gambar = $data->photos()->delete();
+            foreach ($request->file('pp') as $file) {
+                $path = Storage::disk('public')->putFile('pp', $file);
+                $photos = [
+                    'wisata_id' => $id,
+                    'path' => $path,
+                ];
+                Photos::create($photos);
+            }
+        }
+
+        $wisata = [
+            'category_id' => $request->category_id,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+            'deskripsi' => $request->deskripsi,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+        ];
+
+        $data->update($wisata);
 
         return redirect()->route('wisata.index')->with('success', 'Data berhasil terupdate!');
     }
@@ -106,6 +142,10 @@ class WisataController extends Controller
     public function destroy($id)
     {
         $wisata = Wisata::destroy($id);
+        foreach ($wisata->photos as $key) {
+            Storage::delete('public/'.$key->path);
+        }
+
         return redirect()->route('wisata.index')->with('success', 'Data berhasil dihapus!');
     }
 }

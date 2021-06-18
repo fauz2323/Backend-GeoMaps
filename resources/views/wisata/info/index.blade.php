@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="">
+    <div class="row">
         <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">{{ __('Category Page') }}</div>
+            <div class="">
+                <div class="pb-2">{{ __('Category Page') }}</div>
                 <table class="table table-hover col-md-10">
                     <thead>
                         <tr>
