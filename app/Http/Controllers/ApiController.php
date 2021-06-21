@@ -19,10 +19,16 @@ class ApiController extends Controller
         return response()->json(['data' => $cat],200);
     }
 
-    public function wisata()
+    public function wisata($id)
+    {
+        $wisata = \App\Models\Wisata::find($id);
+        return response()->json(['wisata' => $wisata], 200);
+    }
+
+    public function wisataAll()
     {
         $wisata = Wisata::all();
-        return response()->json(['wisata' => $wisata], 200);
+        return response()->json(['wisata'=> $wisata],200);
     }
 
     /**

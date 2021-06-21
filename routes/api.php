@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/webApiCat', [ApiController::class, 'index']);
-Route::get('/webApiAll', [ApiController::class, 'wisata']);
+Route::get('/webApiAll', [ApiController::class, 'wisataAll']);
+Route::get('/wisata/{id}', [ApiController::class, 'wisata']);
