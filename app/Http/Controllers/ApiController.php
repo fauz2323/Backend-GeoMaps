@@ -23,7 +23,7 @@ class ApiController extends Controller
     {
         $wisata = Wisata::findOrFail($id);
         $wisata->photos;
-        return response()->json([$wisata->photos],200);
+        return response()->json($wisata->photos,200);
     }
 
     public function wisata($id)
@@ -35,7 +35,7 @@ class ApiController extends Controller
     public function wisataAll()
     {
         $wisata = Wisata::all();
-        return response()->json([$wisata],200);
+        return response()->json($wisata,200);
     }
 
     /**
