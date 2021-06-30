@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Wisata;
+use app\Models\Post;
 
-class ApiController extends Controller
+class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,27 +19,8 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $cat = Category::with(['wisatas'])->orderBy('created_at', 'DESC')->get();
-        return response()->json(['data' => $cat],200);
-    }
-
-    public function photos($id)
-    {
-        $wisata = Wisata::findOrFail($id);
-        $wisata->photos;
-        return response()->json([$wisata->photos],200);
-    }
-
-    public function wisata($id)
-    {
-        $wisata = Wisata::find($id);
-        return response()->json([$wisata], 200);
-    }
-
-    public function wisataAll()
-    {
-        $wisata = Wisata::all();
-        return response()->json([$wisata],200);
+        $post = Post::all();
+        return view('post.index', compact('post'));
     }
 
     /**
@@ -45,7 +30,7 @@ class ApiController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.add');
     }
 
     /**
@@ -56,7 +41,7 @@ class ApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

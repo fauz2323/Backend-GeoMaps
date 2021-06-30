@@ -20,22 +20,47 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="Category" class="form-label">Nama</label>
+                    @if($errors->has('nama'))
+                                <div class="text-danger">
+                                    {{ $errors->first('nama')}}
+                                </div>
+                        @endif
                     <input type="text" class="form-control" name="nama" placeholder="category wisata">
                 </div>
                 <div class="form-group mb-3">
                     <label for="Category" class="form-label">Alamat</label>
+                    @if($errors->has('alamat'))
+                                <div class="text-danger">
+                                    {{ $errors->first('alamat')}}
+                                </div>
+                        @endif
                     <input type="text" class="form-control" name="alamat" placeholder="category wisata">
                 </div>
                 <div class="form-group mb-3">
                     <label for="Category" class="form-label">Desc</label>
+                    @if($errors->has('deskripsi'))
+                                <div class="text-danger">
+                                    {{ $errors->first('deskripsi')}}
+                                </div>
+                        @endif
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="deskripsi" rows="5"></textarea>
                 </div>
                 <div class="form-group mb-3">
                     <label for="Category" class="form-label">Lat</label>
+                    @if($errors->has('latitude'))
+                                <div class="text-danger">
+                                    {{ $errors->first('latitude')}}
+                                </div>
+                        @endif
                     <input type="text" class="form-control" id="latitude" name="latitude" placeholder="..." value="">
                 </div>
                 <div class="form-group mb-3">
                     <label for="Category" class="form-label">Long</label>
+                    @if($errors->has('longitude'))
+                                <div class="text-danger">
+                                    {{ $errors->first('longitude')}}
+                                </div>
+                        @endif
                     <input type="text" class="form-control" id="longitude" name="longitude" placeholder="..." value="">
                 </div>
                 <div class="form-group increment">

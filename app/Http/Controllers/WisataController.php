@@ -46,6 +46,15 @@ class WisataController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'category_id' => 'required',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'deskripsi' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+
          $wisata = Wisata::create([
             'category_id' => $request->category_id,
             'nama' => $request->nama,
@@ -57,11 +66,11 @@ class WisataController extends Controller
 
             foreach ($request->file('pp') as $file) {
                 $path = Storage::disk('public')->putFile('pp', $file);
-                $photos = [
+                $photo = [
                     'wisata_id' => $wisata->id,
                     'path' => $path,
                 ];
-                Photos::create($photos);
+                Photos::create($photo);
             }
       // Photo::create($photos);
 
@@ -108,14 +117,14 @@ class WisataController extends Controller
             foreach ($data->photos as $key) {
                 Storage::delete('public/'.$key->path);
             }
-            $gambar = $data->photos()->delete();
+            $data->photos()->delete();
             foreach ($request->file('pp') as $file) {
                 $path = Storage::disk('public')->putFile('pp', $file);
-                $photos = [
+                $photo = [
                     'wisata_id' => $id,
                     'path' => $path,
                 ];
-                Photos::create($photos);
+                $data->photos()->create($photo);
             }
         }
 
@@ -141,11 +150,11 @@ class WisataController extends Controller
      */
     public function destroy($id)
     {
-        $wisata = Wisata::destroy($id);
+        $wisata = Wisata::findOrFail($id);
         foreach ($wisata->photos as $key) {
             Storage::delete('public/'.$key->path);
         }
-
+        $wisata->delete();
         return redirect()->route('wisata.index')->with('success', 'Data berhasil dihapus!');
     }
 }

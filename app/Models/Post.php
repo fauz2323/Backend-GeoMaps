@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Photos extends Model
+class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded= [];
+    protected $guarded = [];
 
     /**
-     * Get the wisata that owns the Photos
+     * Get the userPost that owns the Post
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function wisatas()
+    public function userPost()
     {
-        return $this->belongsTo(Wisata::class,'wisata_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
-
 }

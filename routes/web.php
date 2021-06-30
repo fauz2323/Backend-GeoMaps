@@ -5,6 +5,7 @@ use App\Http\Controllers;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,5 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('wisata', WisataController::class);
 Route::resource('category', CategoryController::class);
-
+Route::resource('post', PostController::class);
 
