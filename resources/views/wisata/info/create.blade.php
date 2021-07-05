@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container bg-white pb-3 pt-3">
     <form action="{{ route('wisata.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">

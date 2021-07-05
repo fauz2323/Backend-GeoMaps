@@ -67,21 +67,21 @@
                  </div>
                  <ul class="nav">
                      <li class="nav-item active">
-                         <a class="nav-link" href="dashboard.html">
+                         <a class="nav-link" href="{{ route('home') }}">
                              <i class="nc-icon nc-chart-pie-35"></i>
                              <p>Dashboard</p>
                          </a>
                      </li>
                      <li>
-                         <a class="nav-link" href="./user.html">
+                         <a class="nav-link" href="{{ route('category.index') }}">
                              <i class="nc-icon nc-circle-09"></i>
-                             <p>User Profile</p>
+                             <p>Kategori Wisata</p>
                          </a>
                      </li>
                      <li>
-                         <a class="nav-link" href="./table.html">
+                         <a class="nav-link" href="{{ route('wisata.index') }}">
                              <i class="nc-icon nc-notes"></i>
-                             <p>Table List</p>
+                             <p>List Wisata</p>
                          </a>
                      </li>
                      <li>
@@ -125,31 +125,34 @@
                          <ul class="nav navbar-nav mr-auto">
                              <li class="nav-item">
                                  <a href="#" class="nav-link" data-toggle="dropdown">
-                                     <span class="d-lg-none">Dashboard</span>
+                                     <span class="d-lg-none">Geo~Apps</span>
                                  </a>
                              </li>
-                         <ul class="navbar-nav ml-auto">
-                             <li class="nav-item">
-                                <p class="nav-link">Hi, </p>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}"
-                                    method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
                          </ul>
+                         <div class="d-flex flex-row-reverse bd-highlight">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                   <p class="nav-link">Hi, {{ Auth::user()->name }}</p>
+                               </li>
+                               <li class="nav-item">
+                                   <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                                       {{ __('Logout') }}
+                                   </a>
+
+                                   <form id="logout-form" action="{{ route('logout') }}"
+                                       method="POST" class="d-none">
+                                       @csrf
+                                   </form>
+                               </li>
+                            </ul>
+                         </div>
                      </div>
                  </div>
              </nav>
              <!-- End Navbar -->
              <div class="content">
-                <main class="py-4">
+                <main class="container-fluid">
                     @yield('content')
                 </main>
              </div>
@@ -163,13 +166,13 @@
                                  </a>
                              </li>
                              <li>
-                                 <a href="#">
-                                     Company
+                                 <a href="{{ route('category.index') }}">
+                                     Kategori Wisata
                                  </a>
                              </li>
                              <li>
-                                 <a href="#">
-                                     Portfolio
+                                 <a href="{{ route('wisata.index') }}">
+                                     List Wisata
                                  </a>
                              </li>
                              <li>
@@ -199,9 +202,9 @@
  <script src="{{ asset('assets/js/plugins/bootstrap-switch.js') }}"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  <!--  Google Maps Plugin    -->
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+ {{-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
  <!--  Chartist Plugin  -->
- <script src="{{ asset('assets/js/plugins/chartist.min.js') }}"></script>
+ <script src="{{ asset('assets/js/plugins/chartist.min.js') }}"></script> --}}
  <!--  Notifications Plugin    -->
  <script src="{{ asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
  <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->

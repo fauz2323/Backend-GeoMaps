@@ -1,23 +1,59 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+<div class="container bg-white pb-3 pt-3">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div id='map' style='width: 1000px; height: 600px;'></div>
         </div>
     </div>
 </div>
+
 @endsection
+@push('css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+@endpush
+
+@push('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    <script>
+        var addMarker;
+        mapboxgl.accessToken = '{{ env('MAPBOX_KEY') }}';
+        const location112 = [30.5, 50.5];
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            center: location112,
+            zoom: 11.5,
+            style: 'mapbox://styles/mapbox/streets-v11'
+        });
+
+        var projects = <?php echo json_encode($data);?>;
+        console.log(projects[0]['latitude']);
+        console.log(projects[0]['longitude']);
+
+        for (let index = 0; index < projects.length; index++) {
+            var popup = new mapboxgl.Popup().setText(projects[index]['nama']).addTo(map);
+            var marker = new mapboxgl.Marker().setLngLat([projects[index]['longitude'],projects[index]['latitude']]).addTo(map).setPopup(popup);
+        }
+
+        /* map.on('click', (e) => {
+             const latitude = e.lngLat.lat
+             const longitude = e.lngLat.lng
+
+             document.getElementById("latitude").value = e.lngLat.lat;
+             document.getElementById("longitude").value = e.lngLat.lng;
+
+         }); */
+
+        map.addControl(
+            new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+        );
+
+    </script>
+@endpush
