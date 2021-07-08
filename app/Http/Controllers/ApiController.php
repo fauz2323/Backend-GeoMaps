@@ -15,8 +15,8 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $cat = Wisata::with('categories')->orderBy('created_at', 'DESC')->get();
-        return response()->json(['data' => $cat],200);
+        $cat = Wisata::with('categories','photos')->get();
+        return response()->json($cat,200);
     }
 
     public function photos($id)
