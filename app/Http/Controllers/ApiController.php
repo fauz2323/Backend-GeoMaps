@@ -15,7 +15,7 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $cat = Category::with(['wisatas'])->orderBy('created_at', 'DESC')->get();
+        $cat = Wisata::with('categories')->orderBy('created_at', 'DESC')->get();
         return response()->json(['data' => $cat],200);
     }
 
