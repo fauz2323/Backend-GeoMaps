@@ -132,7 +132,7 @@
                          <div class="d-flex flex-row-reverse bd-highlight">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                   <p class="nav-link">Hi, {{ Auth::user()->name }}</p>
+                                   {{-- <p class="nav-link">Hi, {{ Auth::user()->name }}</p> --}}
                                </li>
                                <li class="nav-item">
                                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
