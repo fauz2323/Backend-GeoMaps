@@ -124,8 +124,10 @@
                      <div class="collapse navbar-collapse justify-content-end" id="navigation">
                          <ul class="nav navbar-nav mr-auto">
                              <li class="nav-item">
+                                <p class="d-flex justify-content-center">Hi, {{ Auth::user()->name }}</p>s
+                             </li>
+                             <li class="nav-item">
                                  <div class="d-lg-none">
-                                    <p class="d-flex justify-content-center">Hi, {{ Auth::user()->name }}</p>
                                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
