@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use app\Models\Post;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -42,10 +44,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $slug = Str::slug($request->slug, '-');
-        dd($slug);
+        if ($request->hasFile('photo')) {
+            $path = Storage::disk('public')->putFile('post', $request->file('photo'),);
+        }else{
+            $path = null;
+        }
 
+        $slug = Str::slug($request->judul, '-');
+        $post =[
+            'user_id' => Auth::user()->id,
+            'title' => $request->judul,
+            'slug' => $slug,
+            'body' => $request->isi,
+            'path' => $path,
+        ];
 
+        Post::create($post);
+
+        return redirect()->route('post.index');
     }
 
     /**

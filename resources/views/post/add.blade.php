@@ -19,15 +19,6 @@
                         <input type="text" class="form-control" name="judul" placeholder="Judul Berita">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="Slug" class="form-label">Slug</label>
-                        @if($errors->has('category'))
-                                <div class="text-danger">
-                                    {{ $errors->first('category')}}
-                                </div>
-                        @endif
-                        <input type="text" class="form-control" name="slug" placeholder="slug">
-                    </div>
-                    <div class="form-group mb-3">
                         <label for="isi" class="form-label">Isi Berita</label>
                         @if($errors->has('category'))
                                 <div class="text-danger">

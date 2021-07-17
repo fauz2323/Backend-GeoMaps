@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -70,19 +70,19 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}
 
 
 
 
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <title>Login Page</title>
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
@@ -94,8 +94,8 @@
     <!-- Tabs Titles -->
 
     <!-- Icon -->
-    <div class="fadeIn first pb-3">
-      <h3>LOGIN</h3>
+    <div class="fadeIn first pb-3 mt-4">
+      <h3>LOGIN PAGE</h3>
     </div>
 
     <!-- Login Form -->
@@ -131,8 +131,8 @@
 
   </div>
 </div>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/core/jquery.3.2.1.min.js') }}"></script>
 
 </body>
-</html> --}}
+</html>

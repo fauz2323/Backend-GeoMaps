@@ -18,9 +18,9 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/test', function () {
     return view('dashboard');
@@ -28,7 +28,7 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::resource('wisata', WisataController::class);
