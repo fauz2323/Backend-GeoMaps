@@ -124,7 +124,7 @@
                      <div class="collapse navbar-collapse justify-content-end" id="navigation">
                          <ul class="nav navbar-nav mr-auto">
                              <li class="nav-item">
-                                <p class="d-flex justify-content-center">Hi, {{ Auth::user()->name }}</p>s
+                                <p class="d-flex justify-content-center">Hi, {{ Auth::user()->name }}</p>
                              </li>
                              <li class="nav-item">
                                  <div class="d-lg-none">
