@@ -124,15 +124,25 @@
                      <div class="collapse navbar-collapse justify-content-end" id="navigation">
                          <ul class="nav navbar-nav mr-auto">
                              <li class="nav-item">
-                                 <a href="#" class="nav-link" data-toggle="dropdown">
+                                 <div class="d-lg-none">
+                                    <p class="d-flex justify-content-center">Hi, {{ Auth::user()->name }}</p>
+                                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                 </div>
+
+
+                                 {{-- <a href="#" class="nav-link" data-toggle="dropdown">
                                      <span class="d-lg-none">Geo~Apps</span>
-                                 </a>
+                                     <h1 class="d-lg-none">hahaha</h1>
+                                 </a> --}}
                              </li>
                          </ul>
                          <div class="d-flex flex-row-reverse bd-highlight">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                   {{-- <p class="nav-link">Hi, {{ Auth::user()->name }}</p> --}}
+                                   <p class="nav-link">Hi, {{ Auth::user()->name }}</p>
                                </li>
                                <li class="nav-item">
                                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
