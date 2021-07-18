@@ -70,9 +70,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $data = Post::where('slug', $slug)->get();
+        // dd($data);
+        return view('post.view', compact('data'));
     }
 
     /**
@@ -83,7 +85,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -95,7 +98,28 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        if ($request->hasFile('photo')) {
+            Storage::delete('public/'.$post->path);
+            $path = Storage::disk('public')->putFile('post', $request->file('photo'),);
+        }else{
+            $path = $post->path;
+        }
+
+        $slug = Str::slug($request->judul, '-');
+        $post1 =[
+            'user_id' => Auth::user()->id,
+            'title' => $request->judul,
+            'slug' => $slug,
+            'body' => $request->isi,
+            'path' => $path,
+        ];
+
+        $post->update($post1);
+
+        return redirect()->route('post.index');
+
     }
 
     /**

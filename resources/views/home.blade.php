@@ -3,6 +3,15 @@
 @section('content')
 <div class="container bg-white pb-3 pt-3">
     <div class="row">
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header bg-transparent border-success">Kategori</div>
+            <div class="card-body text-success">
+              <h3 class="card-text">{{ \App\Models\Category::count() }}<sup style="font-size: 20px"></sup></h3></div>
+            <div class="card-footer bg-transparent border-success"><a href="{{ route('category.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+    </div>
+    <div class="row">
         <div class="col d-flex justify-content-center">
             <div id='map' style='width: 1000px; height: 600px;'></div>
         </div>
@@ -54,6 +63,7 @@
                 trackUserLocation: true
             })
         );
+        map.addControl(new mapboxgl.NavigationControl());
 
     </script>
 @endpush

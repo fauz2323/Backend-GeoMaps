@@ -166,6 +166,7 @@
                 trackUserLocation: true
             })
         );
+        map.addControl(new mapboxgl.NavigationControl());
 
     </script>
 @endpush
