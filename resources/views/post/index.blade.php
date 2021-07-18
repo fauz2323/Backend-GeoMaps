@@ -7,7 +7,7 @@
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
                             <div class="card-header">{{ __('Category Page') }}</div>
-                            <a href="{{ route('category.create') }}" class="btn btn-primary">Tambah Data</a>
+                            <a href="{{ route('post.create') }}" class="btn btn-primary">Tambah Data</a>
                         </div>
                         <div class="card-body table-full-width table-responsive">
                             <table class="m-2 table table-hover table-striped">
