@@ -130,6 +130,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Post::findOrFail($id);
+        Storage::delete('public/'.$delete->path);
+        $delete->delete();
+
+        return redirect()->route('post.index')->with('success', 'Data berhasil dihapus!');
     }
 }
