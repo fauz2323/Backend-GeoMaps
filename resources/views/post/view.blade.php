@@ -11,7 +11,7 @@
                         <div class="card-body table-full-width table-responsive">
                             <img src="{{ asset('storage/' . $data1->path) }}" class="img-fluid" alt="ini gambar">
                             <div class="mt-3 pt-3">
-                                {!! $data1->body !!}
+                                {{ $data1->body }}
                             </div>
                         </div>
                     </div>

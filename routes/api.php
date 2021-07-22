@@ -23,3 +23,4 @@ Route::get('/webApiCat', [ApiController::class, 'index']);
 Route::get('/photo/{id}', [ApiController::class, 'photos']);
 Route::get('/webApiAll', [ApiController::class, 'wisataAll']);
 Route::get('/wisata/{id}', [ApiController::class, 'wisata']);
+Route::get('/post', [ApiController::class, 'beritaPost']);

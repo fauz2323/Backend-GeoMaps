@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Wisata;
 
 class ApiController extends Controller
@@ -36,6 +37,12 @@ class ApiController extends Controller
     {
         $wisata = Wisata::all();
         return response()->json($wisata,200);
+    }
+
+    public function beritaPost()
+    {
+        $post = Post::with('userPost')->get();
+        return response()->json($post,200);
     }
 
     /**

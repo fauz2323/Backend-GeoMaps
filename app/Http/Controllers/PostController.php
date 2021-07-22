@@ -51,10 +51,14 @@ class PostController extends Controller
         }
 
         $slug = Str::slug($request->judul, '-');
+        $desc = Str::limit($request->isi, 100, '...');
+        $descfix = strip_tags(htmlspecialchars_decode($desc));
+        $fix =  str_replace("&nbsp;",' ',$descfix);
         $post =[
             'user_id' => Auth::user()->id,
             'title' => $request->judul,
             'slug' => $slug,
+            'desc' => $fix,
             'body' => $request->isi,
             'path' => $path,
         ];

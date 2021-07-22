@@ -16,7 +16,7 @@
                                     {{ $errors->first('category')}}
                                 </div>
                         @endif
-                        <input type="text" class="form-control" name="judul" placeholder="Judul Berita">
+                        <input type="text" class="form-control" name="judul" >
                     </div>
                     <div class="form-group mb-3">
                         <label for="isi" class="form-label">Isi Berita</label>
@@ -52,6 +52,5 @@
 <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 <script >
   CKEDITOR.replace( 'content' );
-
 </script>
 @endpush
