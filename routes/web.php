@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\WisataController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ViewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::get('/test', function () {
 });
 
 Auth::routes(['register' => false]);
+
+Route::get('/berita/{slug}', [ViewsController::class, 'index'])->name('berita');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
