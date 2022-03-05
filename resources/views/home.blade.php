@@ -28,7 +28,7 @@
     <script>
         var addMarker;
         mapboxgl.accessToken = '{{ env('MAPBOX_KEY') }}';
-        const location112 = [30.5, 50.5];
+        const location112 = [-6.618823, 106.625141];
 
         var map = new mapboxgl.Map({
             container: 'map',
