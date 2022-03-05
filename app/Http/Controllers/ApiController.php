@@ -20,6 +20,12 @@ class ApiController extends Controller
         return response()->json($cat,200);
     }
 
+    public function categoryName($id)
+    {
+        $catName= Category::where('categori',$id)->with('wisatas')->get();
+        return response()->json($catName,200);
+    }
+
     public function photos($id)
     {
         $wisata = Wisata::findOrFail($id);
