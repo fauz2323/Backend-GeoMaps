@@ -20,7 +20,7 @@ class ApiController extends Controller
 
     public function wisataList()
     {
-        $wisata = Wisata::all();
+        $wisata = Wisata::all()->with('photos');
 
         return response()->json([
             'wisata' => $wisata,
