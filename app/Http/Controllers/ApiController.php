@@ -9,111 +9,40 @@ use App\Models\Wisata;
 
 class ApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function categoryList()
     {
-        $cat = Wisata::with('categories','photos')->get();
-        return response()->json($cat,200);
+        $cat = Category::all();
+
+        return response()->json([
+            'category' => $cat
+        ], 200);
     }
 
-    public function categoryName($id)
-    {
-        $catName= Category::where('categori',$id)->with('wisatas')->get();
-        return response()->json($catName,200);
-    }
-
-    public function photos($id)
-    {
-        $wisata = Wisata::findOrFail($id);
-        $wisata->photos;
-        return response()->json($wisata->photos,200);
-    }
-
-    public function wisata($id)
-    {
-        $wisata = Wisata::find($id);
-        return response()->json([$wisata], 200);
-    }
-
-    public function wisataAll()
+    public function wisataList()
     {
         $wisata = Wisata::all();
-        return response()->json($wisata,200);
+
+        return response()->json([
+            'wisata' => $wisata,
+        ], 200);
     }
 
-    public function beritaPost()
+    public function wisataCategory($cat)
     {
-        $post = Post::with('userPost')->get();
-        return response()->json($post,200);
+        $wisataCategory = Category::where('categori', $cat)->first();
+        $wisata = Wisata::where('category_id', $wisataCategory->id)->with('photos')->get();
+
+        return response()->json([
+            'wisata' => $wisata,
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function wisataDetail($id)
     {
-        //
-    }
+        $detail = Wisata::findOrFail($id)->with('photos');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json([
+            'details' => $detail
+        ], 200);
     }
 }

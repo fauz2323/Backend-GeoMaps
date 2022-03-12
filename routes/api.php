@@ -19,9 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/webApiCat', [ApiController::class, 'index']);
-Route::get('/categoryName/{id}', [ApiController::class, 'categoryName']);
-Route::get('/photo/{id}', [ApiController::class, 'photos']);
-Route::get('/webApiAll', [ApiController::class, 'wisataAll']);
-Route::get('/wisata/{id}', [ApiController::class, 'wisata']);
-Route::get('/post', [ApiController::class, 'beritaPost']);
+
+Route::get('category', [ApiController::class, 'categoryList']);
+Route::get('wisata-category/{cat}', [ApiController::class, 'wisataCategory']);
+Route::get('wisata', [ApiController::class, 'wisataList']);
+Route::get('wisata/{id}/show', [ApiController::class, 'wisataDetail']);
